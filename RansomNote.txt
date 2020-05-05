@@ -1,0 +1,20 @@
+public class Solution {
+    public bool CanConstruct(string ransomNote, string magazine) {
+        if((string.IsNullOrEmpty(ransomNote) && string.IsNullOrEmpty(magazine))|| string.IsNullOrEmpty(ransomNote))
+            return true;
+        
+        int[] magazineArray  = new int[26];
+        
+        foreach(char c in magazine)
+            magazineArray[c-'a']++;
+        
+        foreach(char r in ransomNote)
+        {
+            magazineArray[r-'a']--;
+            if(magazineArray[r-'a']<0)
+                return false;
+        }
+        return true;
+
+    }
+}
