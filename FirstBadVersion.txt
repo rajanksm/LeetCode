@@ -1,0 +1,26 @@
+ /* isBadVersion API is mocked with "versions" Dictionary and used as below
+      bool versions[int version#]; */
+
+        IDictionary<int, bool> versions = new Dictionary<int, bool>()
+        { { 1, false },{ 2, true },{3,true },{4,true },{5,true } ,{6,true } };
+
+        public int FirstBadVer(int n)
+        {
+            int begin = 1, end = n;
+            if (n == 1)
+                return n;
+            while (begin < end)
+            {
+                int mid = begin + (end - begin) / 2;
+                if (versions[mid])
+                    end = mid;
+                else if (!versions[mid] && versions[mid + 1])
+                    return mid + 1;
+                else
+                    begin = mid + 1;
+            }
+            if (begin != n && versions[begin])
+                return begin;
+
+            return -1;
+        }
