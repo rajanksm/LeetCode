@@ -1,0 +1,13 @@
+public class Solution {
+    public int FindComplement(int num) {
+        var rem = 0;
+            var result = "";
+            while (num > 0)
+            {
+                rem = num % 2;
+                num = num / 2;
+                result = (rem == 0 ? 1 : 0).ToString() + result;
+            }
+            return Convert.ToInt32(result, 2);
+    }
+}
